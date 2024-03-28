@@ -19,13 +19,13 @@ keys = [False, False, False, False]
 wall_y = -64
 rand_wall = randint(0, 8)
 nmbr_of_walls = 0
-wall_speed = 2
+wall_speed = 0.1
 
 # Kolla om spelet är över eller inte
 is_game = False
 
 # 3 - Ladda bilder
-player = pygame.image.load("zombie.png")
+player = pygame.image.load("characterSprite.png")
 wall = pygame.image.load("wall.png")
 
 
@@ -124,13 +124,13 @@ while 1:
 
         if keys[0]:
             if player_y > 0:
-                player_y -= 15
+                player_y -= 7
         elif keys[2]:
             if player_y < height - 64:
-                player_y += 15
+                player_y += 7
         if keys[1]:
             if player_x > 0:
-                player_x -= 15
+                player_x -= 7
         elif keys[3]:
             if player_x < width - 64:
-                player_x += 15
+                player_x += 7

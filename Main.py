@@ -42,7 +42,6 @@ class Snake:
             self.dead = False
             apple = Apple()
 
-
         self.body.append(self.head)
         for i in range(len(self.body) - 1):
             self.body[i].x, self.body[i].y = self.body[i + 1].x, self.body[i + 1].y
@@ -59,6 +58,7 @@ class Apple:
 
     def update(self):
         pygame.draw.rect(screen, "red", self.rect)
+
 
 class BoostedApple(Apple):
     def update(self):

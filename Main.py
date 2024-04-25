@@ -65,14 +65,14 @@ class BoostedApple(Apple):
         pygame.draw.rect(screen, "blue", self.rect)
 
 
-def drawGrid():
+def drawgrid():
     for x in range(0, SW, BLOCK_SIZE):
         for y in range(0, SH, BLOCK_SIZE):
             rect = pygame.Rect(x, y, BLOCK_SIZE, BLOCK_SIZE)
             pygame.draw.rect(screen, "#3c3c3b", rect, 1)
 
 
-drawGrid()
+drawgrid()
 
 snake = Snake()
 
@@ -102,7 +102,7 @@ while True:
     snake.update()
 
     screen.fill('black')
-    drawGrid()
+    drawgrid()
 
     apple.update()
 

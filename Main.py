@@ -10,7 +10,7 @@ BLOCK_SIZE = 50
 pygame.font.SysFont('arial', BLOCK_SIZE * 2)
 
 screen = pygame.display.set_mode((600, 600))
-pygame.display.set_caption("Snake!")
+pygame.display.set_caption("Snake game")
 clock = pygame.time.Clock()
 
 
@@ -25,6 +25,7 @@ class Snake:
 
     def update(self):
         global apple
+        global boostApple
 
         for square in self.body:
             if self.head.x == square.x and self.head.y == square.y:
@@ -59,6 +60,10 @@ class Apple:
     def update(self):
         pygame.draw.rect(screen, "red", self.rect)
 
+class BoostedApple(Apple):
+    def update(self):
+        pygame.draw.rect(screen, "blue", self.rect)
+
 
 def drawGrid():
     for x in range(0, SW, BLOCK_SIZE):
@@ -72,6 +77,8 @@ drawGrid()
 snake = Snake()
 
 apple = Apple()
+
+boostApple = BoostedApple()
 
 while True:
     for event in pygame.event.get():
@@ -99,6 +106,8 @@ while True:
 
     apple.update()
 
+    boostApple.update()
+
     pygame.draw.rect(screen, "green", snake.head)
 
     for square in snake.body:
@@ -107,6 +116,10 @@ while True:
     if snake.head.x == apple.x and snake.head.y == apple.y:
         snake.body.append(pygame.Rect(square.x, square.y, BLOCK_SIZE, BLOCK_SIZE))
         apple = Apple()
+
+    if snake.head.x == boostApple.x and snake.head.y == boostApple.y:
+        snake.body.append(pygame.Rect(square.x, square.y, BLOCK_SIZE, BLOCK_SIZE))
+        boostApple = BoostedApple()
 
     pygame.display.update()
     clock.tick(10)

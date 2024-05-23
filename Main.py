@@ -46,7 +46,7 @@ class Snake:
             self.dead = False
             apple = Apple()
 
-        # Place the snakes head into the body array and check if you have gotten any apples (body length) then reapply the head
+        # Place the snakes head into the body array and check if you have gotten any apples (body length) then remove and reapply the head
         self.body.append(self.head)
         for i in range(len(self.body) - 1):
             self.body[i].x, self.body[i].y = self.body[i + 1].x, self.body[i + 1].y
@@ -65,12 +65,12 @@ class Apple:
     def update(self):
         pygame.draw.rect(screen, "red", self.rect)
 
-# BoostedApple has inherited the same variables as Apple but i've overriddien the update method to make it blue
+# BoostedApple has inherited the same variables as Apple but i've overridden the update method to make it blue
 class BoostedApple(Apple):
     def update(self):
         pygame.draw.rect(screen, "blue", self.rect)
 
-# Draw the grid for the game
+# Draw the grid for the game on the screen
 def drawgrid():
     for x in range(0, SW, BLOCK_SIZE):
         for y in range(0, SH, BLOCK_SIZE):
@@ -106,24 +106,24 @@ while True:
     screen.fill('black')
     drawgrid()
 
-    # Calling update methods for the game
+    # Calling update methods for the snake, apple and boostedApple
     snake.update()
     apple.update()
     boostApple.update()
 
-    # Draw the head of the snake
+    # Draw the head of the snake on the screen
     pygame.draw.rect(screen, "green", snake.head)
 
-    # Draw the body of the snake
+    # Draw the body of the snake on the screen
     for square in snake.body:
         pygame.draw.rect(screen, "green", square)
 
-    # Snake body extension 
+    # Snake body extension by colliding with regular apple
     if snake.head.x == apple.x and snake.head.y == apple.y:
         snake.body.append(pygame.Rect(square.x, square.y, BLOCK_SIZE, BLOCK_SIZE))
         apple = Apple()
 
-    # Snake body extension
+    # Snake body extension by colliding with BoostedApple
     if snake.head.x == boostApple.x and snake.head.y == boostApple.y:
         snake.body.append(pygame.Rect(square.x, square.y, BLOCK_SIZE, BLOCK_SIZE))
         boostApple = BoostedApple()

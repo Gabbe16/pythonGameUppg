@@ -1,5 +1,7 @@
+# Import statements
 import requests
 
+# Function to get the temperature
 def get_weather(city, api_key):
     url = f"http://api.openweathermap.org/data/2.5/weather?q={city}&appid={api_key}&units=metric"
     response = requests.get(url)
@@ -19,6 +21,7 @@ def main():
 if __name__ == "__main__":
     main()
 
+# Function to get the temperature to then get the color
 def get_temp():
     city = input("Enter city name: ")
     api_key = "f3766672014224dca721272a510aec96"
